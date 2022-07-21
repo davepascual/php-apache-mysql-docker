@@ -1,0 +1,33 @@
+services:
+  php_apache:
+    container_name: php_apache
+    build:
+      dockerfile: ./php/Dockerfile
+    volumes:
+      - ./php:/var/www/html/
+      - uploads:/var/www/html/uploads:rw
+    env_file:
+      - ./.env
+    ports:
+      - ${PHP_APACHE_APP_PORT}:80
+    depends_on:
+      - database
+  database:
+    container_name: database
+    build:
+      dockerfile: ./mysql/Dockerfile
+    volumes:
+      - database:/var/lib/mysql
+    restart: always
+    env_file:
+      - ./.env
+    ports:
+      - "${MYSQL_PUBLIC_PORT}:3306"
+
+volumes:
+  database: {}
+  uploads: {}
+
+networks:
+  php-apache-app:
+    name: php_apache_network

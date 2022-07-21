@@ -53,7 +53,7 @@ mysql -u <MYSQL_ROOT_USER> -p <MYSQL_DATABASE> < ./mysql/dump/db_demo.sql
 MySQL configuration.
 
 Check [MySQL| Docker Hub](https://hub.docker.com/_/mysql/) documentation for more information.
-```
+```console
 # MYSQL 
 MYSQL_ROOT_USER=root
 MYSQL_ROOT_PASSWORD=toor
